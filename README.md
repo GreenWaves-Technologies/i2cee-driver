@@ -16,7 +16,7 @@ https://en.wikipedia.org/wiki/EEPROM
 #include "mbed.h"
 #include "I2CEEBlockDevice.h"
 
-// Create EEPROM device on I2C bus with 32kbytes of memory, 256 byte page, 100 KHz
+// Create EEPROM device on I2C bus with 256kbytes of memory, 256 byte page, 100 KHz
 I2CEEBlockDevice i2cee(I2C0_SDA, I2C0_SCL, 0xA0, 256*1024, 256, 100000);
 
 int main() {
@@ -53,7 +53,7 @@ int main() {
 
 #define BLOCK_SIZE 256
 
-// Create EEPROM device on I2C bus with 32kbytes of memory
+// Create EEPROM device on I2C bus with 256kbytes of memory
 I2CEEBlockDevice i2cee(I2C0_SDA, I2C0_SCL, 0xA0, 256*1024, BLOCK_SIZE, 100000);
 
 uint8_t setting_block_size;
