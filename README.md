@@ -1,6 +1,6 @@
 # I2C EEPROM Driver
 
-Block device driver for I2C based EEPROM devices such as the 24LC or AT24C series of devices.
+Block device driver for I2C based EEPROM devices such as the M24M02, 24LC or AT24C series of devices.
 
 EEPROM devices support much higher read/write cycles than flash based memory, at a cost in terms of size. Additionally, I2C EEPROM devices support byte-level read/writes with buffering of around 32bytes during writes.
 
