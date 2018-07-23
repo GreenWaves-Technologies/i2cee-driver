@@ -12,12 +12,12 @@ https://en.wikipedia.org/wiki/EEPROM
 ## Basic example
 
 ``` cpp
-// Here's an example using a 24LC256 on a GR PEACH
+// Here's an example using a M24M02-DRMN6 on GAP8
 #include "mbed.h"
 #include "I2CEEBlockDevice.h"
 
-// Create EEPROM device on I2C bus with 32kbytes of memory
-I2CEEBlockDevice i2cee(D14, D15, 0xa0, 32*1024);
+// Create EEPROM device on I2C bus with 32kbytes of memory, 256 byte page, 100 KHz
+I2CEEBlockDevice i2cee(I2C0_SDA, I2C0_SCL, 0xA0, 256*1024, 256, 100000);
 
 int main() {
     printf("i2cee test\n");
@@ -41,19 +41,20 @@ int main() {
 
     // Deinitialize the device
     i2cee.deinit();
+    free(buffer);
 }
 ```
 
 ## Saving struct example
 ``` cpp
-// Here's an example using a 24LC256 to store a C struct
+// Here's an example using a M24M02-DRMN6 to store a C struct
 #include "mbed.h"
 #include "I2CEEBlockDevice.h"
 
-#define BLOCK_SIZE 32
+#define BLOCK_SIZE 256
 
 // Create EEPROM device on I2C bus with 32kbytes of memory
-I2CEEBlockDevice i2cee(P0_0, P0_1, 0xA0, 32*1024, BLOCK_SIZE);
+I2CEEBlockDevice i2cee(I2C0_SDA, I2C0_SCL, 0xA0, 256*1024, BLOCK_SIZE, 100000);
 
 uint8_t setting_block_size;
 

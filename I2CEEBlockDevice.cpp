@@ -13,6 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/*
+ Modifications copyright (C) 2018 GreenWaves Technologies
+
+ - Add 10 ms delay because of no ACK check.
+ */
+
 #include "I2CEEBlockDevice.h"
 
 #define I2CEE_TIMEOUT 10000
@@ -99,6 +105,8 @@ int I2CEEBlockDevice::erase(bd_addr_t addr, bd_size_t size)
 
 int I2CEEBlockDevice::_sync()
 {
+    wait_ms(10);
+
     // The chip doesn't ACK while writing to the actual EEPROM
     // so loop trying to do a zero byte write until it is ACKed
     // by the chip.
